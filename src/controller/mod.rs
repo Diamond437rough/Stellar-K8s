@@ -1,6 +1,7 @@
 
 
 pub mod autoscaler;
+pub mod catchup;
 pub mod benchmark;
 pub mod blue_green;
 
@@ -100,6 +101,7 @@ mod csi_snapshot;
 pub mod snapshot;
 pub mod snapshot_worker;
 pub mod spot_drain;
+pub mod storage;
 pub mod storage_migration;
 pub(crate) mod sync_scale;
 pub(crate) mod sync_state_monitor;
@@ -204,6 +206,12 @@ pub use topology::{
     build_statefulset_patch, discover_cluster_topology, enforce_namespace, enforce_on_statefulset,
     ClusterTopology, EnforcementResult, TopologyMode, TopologyRuleSet, TopologySpreadConstraint,
     WhenUnsatisfiable,
+};
+
+// Parallelized catchup downloader (issue: parallelized-catchup-data-downloader)
+pub use catchup::{
+    DownloadJob, DownloadManager, DownloadManagerConfig, DownloadResult, DownloadStats,
+    WorkerPool, WorkerPoolConfig, WorkerPoolStats,
 };
 
 // BGP Anycast & MetalLB Integration for Horizon
